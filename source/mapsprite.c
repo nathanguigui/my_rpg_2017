@@ -24,7 +24,6 @@ char *add_char(char *str, char content)
 sfRectangleShape *textuchar(sfRectangleShape *sprite, char content)
 {
 	char *path = add_char("ressources/ARVANA/TEXTURE/", content);
-	my_putstr(path);
 	path = my_strcat(path, ".png");
 	sfTexture *texture = sfTexture_createFromFile(path, NULL);
 	sfRectangleShape_setTexture(sprite, texture, sfFalse);

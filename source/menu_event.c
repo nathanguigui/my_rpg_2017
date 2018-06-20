@@ -27,6 +27,25 @@ int is_collision(sfVector2i pos, sfFloatRect hit_b)
 	return (0);
 }
 
+void pause_break(rpgcore_t *GAME)
+{
+	sfVector2i mouse_pos = sfMouse_getPosition(GAME->window);
+	sfFloatRect play_hb = sfRectangleShape_getGlobalBounds(GAME->rpause[2]);
+	sfFloatRect about_hb = sfRectangleShape_getGlobalBounds(GAME->rpause[1]);
+	sfFloatRect exit_hb = sfRectangleShape_getGlobalBounds(GAME->rpause[3]);
+	if (is_collision(mouse_pos, exit_hb) &&
+		sfMouse_isButtonPressed(sfMouseLeft))
+		exit(84);
+	if (is_collision(mouse_pos, play_hb) &&
+	sfMouse_isButtonPressed(sfMouseLeft)) {
+		sfRectangleShape_destroy(GAME->rpause[0]);
+		sfRectangleShape_destroy(GAME->rpause[1]);
+		sfRectangleShape_destroy(GAME->rpause[2]);
+		sfRectangleShape_destroy(GAME->rpause[3]);
+		GAME->pause = 0;
+	}
+}
+
 void menu_event(rpgcore_t *GAME)
 {
 	sfVector2i mouse_pos = sfMouse_getPosition(GAME->window);

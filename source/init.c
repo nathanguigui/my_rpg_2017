@@ -13,7 +13,7 @@ sfIntRect player_coordup(void)
 
 	result.top = 673;
 	result.left = 10;
-	result.width = 70;
+	result.width = 80;
 	result.height = 97;
 
 	return (result);
@@ -42,8 +42,6 @@ sfIntRect player_coordleft(void)
 	
 	return (result);
 }
-
-
 
 sfIntRect player_coorddown(void)
 {

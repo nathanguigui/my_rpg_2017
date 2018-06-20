@@ -24,7 +24,19 @@ FILES	=	main.c	\
 		init_power.c\
 		menu_event.c\
 		ia_manage.c\
-		map_update.c
+		map_update.c\
+		create_pause.c\
+		init_princess.c\
+		player_collision.c \
+		life.c\
+		init_potion.c\
+		sound.c\
+		quest.c\
+		init_zombie.c \
+		ia_zombie.c \
+		zombiecore.c \
+		princess_manage.c\
+		power_mob.c
 
 SRC	=	$(addprefix $(PREFIX), $(FILES))
 
@@ -34,7 +46,7 @@ NAME	=	my_rpg
 
 CFLAGS	+=	-W -Wall -Wextra -I include -g
 
-LDFLAGS	+=	-L library/ -l my -lc_graph_prog
+LDFLAGS	+=	-L library/ -l my -lc_graph_prog -lm
 
 all:	my	$(NAME)
 

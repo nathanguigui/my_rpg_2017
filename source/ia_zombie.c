@@ -7,7 +7,7 @@
 
 #include "my_rpg.h"
 
-void move_mob(player_t *mob)
+void move_zombie(player_t *mob)
 {
 	int seconds = 0;
 	mob->time = sfClock_getElapsedTime(mob->clock);
@@ -23,50 +23,50 @@ void move_mob(player_t *mob)
 		}
 }
 
-void mob_advance(player_t *mob)
+void zombie_advance(player_t *mob)
 {
 
 	int mob1 = rand() % 4 + 1;
 	int a = 0;
 
 	if (mob1 == 1) {
-		mob->skin = mob_coordright();
+		mob->skin = zombie_coordright();
 		sfSprite_setTextureRect(mob->sprite, mob->skin);
 		sfSprite_setPosition(mob->sprite, mob->vec);
-		move_mob(mob);
-		mob->vec.x = mob->vec.x + 15;
+		move_zombie(mob);
+		mob->vec.x = mob->vec.x + 7;
 		}
 	if (mob1 == 2) {
-		mob->skin = mob_coordright();
-		mob->vec.x = mob->vec.x - 9;
+		mob->skin = zombie_coordright();
+		mob->vec.x = mob->vec.x - 7;
 		sfSprite_setTextureRect(mob->sprite, mob->skin);
 		sfSprite_setPosition(mob->sprite, mob->vec);
-		move_mob(mob);
+		move_zombie(mob);
 		}
 	if (mob1 == 3) {
-		mob->skin = mob_coordup();
-		mob->vec.y = mob->vec.y + 15;
+		mob->skin = zombie_coordright();
+		mob->vec.y = mob->vec.y + 7;
 		sfSprite_setTextureRect(mob->sprite, mob->skin);
 		sfSprite_setPosition(mob->sprite, mob->vec);
-		move_mob(mob);
+		move_zombie(mob);
 	}
 	if (mob1 == 3) {
-		mob->skin = mob_coorddown();
-		mob->vec.y = mob->vec.y - 15;
+		mob->skin = zombie_coordright();
+		mob->vec.y = mob->vec.y - 7;
 		sfSprite_setTextureRect(mob->sprite, mob->skin);
 		sfSprite_setPosition(mob->sprite, mob->vec);
-		move_mob(mob);
+		move_zombie(mob);
 	}
 }
 
-void move_legmob(player_t *mob)
+void move_legzombie(player_t *mob)
 {
 	int seconds = 0;
 	mob->time = sfClock_getElapsedTime(mob->clock);
 	seconds = mob->time.microseconds/10000.0;
 	
 	if (seconds > 30) {
-			mob_advance(mob);
+			zombie_advance(mob);
 			sfClock_restart(mob->clock);
 		}
 }

@@ -7,6 +7,12 @@
 
 #include "my_rpg.h"
 
+void about(rpgcore_t *GAME)
+{
+	sfRectangleShape_destroy(GAME->rmenu[2]);
+	sfRectangleShape_destroy(GAME->rmenu[3]);
+}
+
 void menu_switch(rpgcore_t *GAME)
 {
 	static int status = 0;
@@ -18,8 +24,17 @@ void menu_switch(rpgcore_t *GAME)
 		break;
 	case -1:
 		move_legmob(GAME->mob);
-		text_sprite(GAME);
+		move_legprinc(GAME->princess);
+		move_legzombie(GAME->zombie1);
+		move_legzombie(GAME->zombie2);
+		move_legzombie(GAME->zombie3);
+		move_legzombie(GAME->zombie4);
+		move_legzombie(GAME->zombie5);
 		power_mvm(GAME);
+		power_mvm2(GAME);
+		quest(GAME, "la princesse a ete enleve");
+		experience(GAME);
+		text_sprite(GAME);
 		refresh_map(GAME);
 		break;
 		
@@ -33,18 +48,19 @@ void menu_switch(rpgcore_t *GAME)
 int main(void)
 {
 	rpgcore_t *GAME = create_core();
+	srand(time(0));
+	int i = 0;
 
 	sfVector2f pos;
 	GAME->player->skin = player_coordup();
 	GAME->ia->skin = player_coordup();
-
+	GAME->princess->skin = princess_coordleft();
 	sfSprite_setPosition(GAME->player->sprite, GAME->player->vec);
 	sfSprite_setPosition(GAME->ia->sprite, GAME->ia->vec);
 	sfSprite_setTextureRect(GAME->player->sprite, GAME->player->skin);
 	sfSprite_setTextureRect(GAME->ia->sprite, GAME->ia->skin);
 	sfSprite_setTextureRect(GAME->power->sprite, GAME->power->skin);
 	sfSprite_setPosition(GAME->power->sprite, GAME->power->vec);
-
 	file_to_map(GAME, "ressources/map-tutorial.txt");
 	load_map(GAME, "ressources/map-tutorial.txt");
 	GAME->power->vec.y = GAME->player->vec.y + 50;
@@ -53,6 +69,8 @@ int main(void)
 	while (sfRenderWindow_isOpen(GAME->window)) {
 		while (sfRenderWindow_pollEvent(GAME->window, &GAME->event))
 				detect_evnt(GAME);
+			update_life(GAME);
+			experience(GAME);
 			menu_switch(GAME);
 	}
 	sfRenderWindow_destroy(GAME->window);

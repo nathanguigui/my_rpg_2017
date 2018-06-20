@@ -10,10 +10,10 @@ sfIntRect power_coordright(void)
 {
 	sfIntRect result;
 
-	result.top = 125;
+	result.top = 255;
 	result.left = 0;
-	result.width = 30;
-	result.height = 30;
+	result.width = 33;
+	result.height = 40;
 
 	return (result);
 }
@@ -22,10 +22,10 @@ sfIntRect power_coorddown(void)
 {
 	sfIntRect result;
 
-	result.top = 125;
+	result.top = 255;
 	result.left = 90;
-	result.width = 30;
-	result.height = 30;
+	result.width = 40;
+	result.height = 37;
 
 	return (result);
 }
@@ -34,10 +34,10 @@ sfIntRect power_coordup(void)
 {
 	sfIntRect result;
 
-	result.top = 125;
+	result.top = 255;
 	result.left = 35;
-	result.width = 30;
-	result.height = 30;
+	result.width = 32;
+	result.height = 40;
 
 	return (result);
 
@@ -47,10 +47,10 @@ sfIntRect power_coordleft(void)
 {
 	sfIntRect result;
 
-	result.top = 125;
+	result.top = 255;
 	result.left = 60;
-	result.width = 30;
-	result.height = 30;
+	result.width = 40;
+	result.height = 38;
 
 	return (result);
 }
@@ -62,6 +62,23 @@ void life(rpgcore_t *GAME)
 	if (GAME->mob->life == 0){
 		GAME->mob->vec.x = -1000;
 		GAME->mob->vec.y = -1000;
+
+		GAME->zombie1->vec.x = -1000;
+		GAME->zombie1->vec.y = -1000;
+		
+		GAME->zombie2->vec.x = -1000;
+		GAME->zombie2->vec.y = -1000;
+		
+		GAME->zombie3->vec.x = -1000;
+		GAME->zombie3->vec.y = -1000;
+		
+		GAME->zombie4->vec.x = -1000;
+		GAME->zombie4->vec.y = -1000;
+		
+		GAME->zombie5->vec.x = -1000;
+		GAME->zombie5->vec.y = -1000;
+		
+		GAME->potion1->boul = GAME->potion1->boul + 1;
 		sfSprite_setPosition(GAME->power->sprite, GAME->power->vec);
 		GAME->player->exp = GAME->player->exp + 10;
 	}
@@ -140,28 +157,28 @@ void power_event(rpgcore_t *GAME)
 	if ((GAME->event.type == sfEvtKeyPressed) && (GAME->event.key.code == sfKeyZ)) {
 		GAME->power->skin = power_coordup();
 		GAME->power->vec.y = GAME->player->vec.y + 55;
-		GAME->power->vec.x = GAME->player->vec.x + 47;
+		GAME->power->vec.x = GAME->player->vec.x + 30;
 		GAME->power->boul = 1;
 		GAME->power->dir = 'Z';
 	}
 	if ((GAME->event.type == sfEvtKeyPressed) && (GAME->event.key.code == sfKeyS)) {
 		GAME->power->skin = power_coorddown();
 		GAME->power->vec.y = GAME->player->vec.y + 55;
-		GAME->power->vec.x = GAME->player->vec.x + 47;
+		GAME->power->vec.x = GAME->player->vec.x + 30;
 		GAME->power->boul = 1;
 		GAME->power->dir = 'S';
 	}
 	if ((GAME->event.type == sfEvtKeyPressed) && (GAME->event.key.code == sfKeyQ)) {
 		GAME->power->skin = power_coordleft();
 		GAME->power->vec.y = GAME->player->vec.y + 55;
-		GAME->power->vec.x = GAME->player->vec.x + 47;
+		GAME->power->vec.x = GAME->player->vec.x + 30;
 		GAME->power->boul = 1;
 		GAME->power->dir = 'Q';
 	}
 	if ((GAME->event.type == sfEvtKeyPressed) && (GAME->event.key.code == sfKeyD)) {
 		GAME->power->skin = power_coordright();
 		GAME->power->vec.y = GAME->player->vec.y + 55;
-		GAME->power->vec.x = GAME->player->vec.x + 47;
+		GAME->power->vec.x = GAME->player->vec.x + 30;
 		GAME->power->boul = 1;
 		GAME->power->dir = 'D';
 	}
